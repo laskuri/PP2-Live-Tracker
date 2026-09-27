@@ -8,6 +8,22 @@ namespace PP2_Live_Tracker.Services
 {
     public static class ScreenCaptureService
     {
+        public static Bitmap CaptureWindowBitmap(int left, int top, int width, int height)
+        {
+            Bitmap bitmap = new Bitmap(width, height);
+
+            using (Graphics graphics = Graphics.FromImage(bitmap))
+            {
+                graphics.CopyFromScreen(
+                    left,
+                    top,
+                    0,
+                    0,
+                    new Size(width, height));
+            }
+
+            return bitmap;
+        }
         public static BitmapSource CaptureWindow(int left, int top, int width, int height)
         {
             using Bitmap bitmap = new Bitmap(width, height);
